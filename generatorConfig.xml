@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+     <!-- 引入外部的属性配置 -->
+    <properties resource="config.properties" />
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 配置通用Mapper的MBG插件的相关信息 -->
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.Mapper}"/>
+        </plugin>
+
+        <!-- 配置连接数据库的基本信息 -->
+        <!--<jdbcConnection-->
+                <!--driverClass="com.mysql.jdbc.Driver"-->
+                <!--connectionURL="jdbc:mysql://39.96.208.201:3306/springcloud_sell?serverTimezone=CTT&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"-->
+                <!--userId="root"-->
+                <!--password="1234">-->
+        <!--</jdbcConnection>-->
+        <jdbcConnection
+                driverClass="${jdbc.driver}"
+                connectionURL="${jdbc.url}"
+                userId="${jdbc.user}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- 配置Java实体类存放位置 -->
+        <javaModelGenerator targetPackage="${package}.entities" targetProject="${target.java-project}"/>
+
+        <!-- 配置xxxMapper.xml存放的位置 -->
+        <!--<sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourceProject}"/>-->
+        <sqlMapGenerator targetPackage="mybatis/mappers" targetProject="${target.resource-project}"/>
+
+        <!-- 配置xxxMapper.java存放的位置 -->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"/>-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="${package}.mapper" targetProject="${target.java-project}"/>
+
+
+		<!-- ******************************************************需要生成的表定义在这儿****************************************************** -->
+
+		<!-- ****秒杀项目********************************************************************************************************************** -->
+        <!--
+        <table tableName="ms_goods" domainObjectName="MsGoods">
+            <generatedKey column="ms_goods_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        <table tableName="om_goods" domainObjectName="Goods">
+            <generatedKey column="goods_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        <table tableName="om_orders" domainObjectName="Orders">
+            <generatedKey column="orders_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        <table tableName="um_deliveries" domainObjectName="Deliveries">
+            <generatedKey column="deliveries_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        <table tableName="um_user" domainObjectName="User">
+            <generatedKey column="user_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        -->
+
+		<!-- ****springmvcdemo项目的表******************************************************************************************************** -->
+        <!--<table tableName="tbl_employee" domainObjectName="Employee">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+        <!--<table tableName="tbl_department" domainObjectName="Department">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+		
+		<!-- ****springcloud_sell项目********************************************************************************************************* -->
+		
+        <table tableName="product_category" domainObjectName="ProductCategory">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="product_info" domainObjectName="ProductInfo">
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        </table>
+    </context>
+</generatorConfiguration>
